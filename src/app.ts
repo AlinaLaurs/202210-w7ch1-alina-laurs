@@ -1,32 +1,32 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-import { Task } from './interfaces/task';
+import { Coctail } from './interfaces/coctail';
 import importData from './mock/data.json' assert { type: 'json' };
 
 export const app = express();
-const data: Array<Task> = importData.tasks;
+const data: Array<Coctail> = importData.coctails;
 
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('¡Try a coctail!');
     res.end();
 });
 
-app.get('/tasks', (req, res) => {
+app.get('/coctails', (req, res) => {
     res.json(data);
     res.end();
 });
 
-app.post('/tasks', (req, res) => {
-    const newTask = {
+app.post('/coctails', (req, res) => {
+    const newCoctail = {
         ...req.body,
         id: data.length + 1,
     };
-    data.push(newTask);
-    res.json(newTask);
+    data.push(newCoctail);
+    res.json(newCoctail);
     res.end();
 });

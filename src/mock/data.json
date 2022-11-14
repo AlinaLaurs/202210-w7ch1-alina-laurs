@@ -1,28 +1,25 @@
 {
-    "tasks": [
+    "coctails": [
         {
-            "title": "Estudiar",
-            "responsible": "Ernesto",
             "id": 1,
-            "isComplete": true
+            "name": "Bloody Mary",
+            "color": "Red",
+            "ingredient": "Tomato",
+            "alcohol": true
         },
         {
-            "title": "Dormir",
-            "responsible": "Pepe",
-            "id": 2,
-            "isComplete": true
+            "id": 1,
+            "name": "Cosmopolitan",
+            "color": "Pink",
+            "ingredient": "Blueberry",
+            "alcohol": true
         },
         {
-            "title": "Aprender Flux",
-            "responsible": "Todos",
-            "isComplete": false,
-            "id": 3
-        },
-        {
-            "title": "Added task",
-            "responsible": "",
-            "isComplete": false,
-            "id": 4
+            "id": 1,
+            "name": "Piña Colada",
+            "color": "White",
+            "ingredient": "Pineapple",
+            "alcohol": false
         }
     ]
 }

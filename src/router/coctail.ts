@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import { TaskController } from '../controllers/tasks.js';
+import { CoctailController } from '../controllers/coctails.js';
 
-export const taskRouter = Router();
+export const coctailRouter = Router();
 
-const controller = new TaskController();
+const controller = new CoctailController();
 
-taskRouter.get('/', controller.getAll);
-taskRouter.get('/:id', controller.get);
-taskRouter.post('/', controller.post);
-taskRouter.patch('/:id', controller.patch);
-taskRouter.delete('/:id', controller.delete);
+coctailRouter.get('/', controller.getAll);
+coctailRouter.get('/:id', controller.get);
+coctailRouter.post('/', controller.post);
+coctailRouter.patch('/:id', controller.patch);
+coctailRouter.delete('/:id', controller.delete);

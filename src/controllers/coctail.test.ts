@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
-import { TaskController } from './tasks';
+import { CoctailController } from './coctails.js';
 
-describe('Given TaskController', () => {
-    const taskController = new TaskController();
+describe('Given CoctailController', () => {
+    const coctailController = new CoctailController();
     const req = {};
     const resp = {
         json: jest.fn(),
         end: jest.fn(),
     };
     test('Then ... getAll', () => {
-        taskController.getAll(req as Request, resp as unknown as Response);
+        coctailController.getAll(req as Request, resp as unknown as Response);
         expect(resp.json).toHaveBeenCalled();
         expect(resp.end).toHaveBeenCalled();
     });

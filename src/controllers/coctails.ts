@@ -1,10 +1,6 @@
-import fs from 'fs';
 import { NextFunction, Request, Response } from 'express';
-import * as dotenv from 'dotenv';
-dotenv.config();
 import { Coctail } from '../interfaces/coctail.js';
-const dataFile = process.env.DATA_FILE || '';
-const importData = JSON.parse(fs.readFileSync(dataFile, 'utf-8'));
+import importData from '../mock/data.json' assert { type: 'json' };
 
 // eslint-disable-next-line prefer-const
 let data: Array<Coctail> = importData.coctails;

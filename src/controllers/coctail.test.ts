@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
+import { CoctailFileData } from '../data/coctails.file.data.js';
 import { CoctailController } from './coctails.js';
 
 describe('Given CoctailController', () => {
-    const coctailController = new CoctailController();
+    const model = new CoctailFileData();
+    const coctailController = new CoctailController(model);
     const req = {};
     const resp = {
         json: jest.fn(),

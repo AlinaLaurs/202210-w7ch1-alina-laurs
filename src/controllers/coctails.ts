@@ -1,50 +1,100 @@
+import { Coctail } from './../interfaces/coctail.js';
 import { NextFunction, Request, Response } from 'express';
-import { Coctail } from '../interfaces/coctail.js';
-import importData from '../mock/data.json' assert { type: 'json' };
-
-// eslint-disable-next-line prefer-const
-let data: Array<Coctail> = importData.coctails;
-
+import { Data } from '../data/data.js';
+import { HTTPError } from '../interfaces/error.js';
 export class CoctailController {
-    getAll(req: Request, resp: Response) {
-        resp.json(data);
-        resp.end();
+    constructor(public dataModel: Data<Coctail>) {}
+    async getAll(req: Request, resp: Response, next: NextFunction) {
+        try {
+            const data = await this.dataModel.getAll();
+            resp.json(data).end();
+        } catch (error) {
+            const httpError = new HTTPError(
+                503,
+                'Service unavailable',
+                (error as Error).message
+            );
+            next(httpError);
+            return;
+        }
     }
 
     get(req: Request, resp: Response) {
-        data = data.filter((item) => item.id === +req.params.id);
-        resp.json(data);
-        resp.end();
+        //
     }
 
-    post(req: Request, resp: Response) {
-        const newCoctail = {
-            ...req.body,
-            id: data.length + 1,
-        };
-        data.push(newCoctail);
-        resp.json(newCoctail);
-        resp.end();
-    }
-
-    patch(req: Request, resp: Response) {
-        const updateCoctail = {
-            ...data.find((item) => item.id === +req.params.id),
-            ...req.body,
-        };
-        data[data.findIndex((item) => item.id === +req.params.id)] =
-            updateCoctail;
-        resp.json(updateCoctail);
-        resp.end();
-    }
-
-    delete(req: Request, resp: Response, next: NextFunction) {
-        if (!data.find((item) => item.id === +req.params.id)) {
-            next(new Error('Not found'));
+    async post(req: Request, resp: Response, next: NextFunction) {
+        if (!req.body.title) {
+            const httpError = new HTTPError(
+                406,
+                'Not Acceptable',
+                'Title not included in the data'
+            );
+            next(httpError);
             return;
         }
-        data = data.filter((item) => item.id !== +req.params.id);
-        resp.json({});
-        resp.end();
+        try {
+            const newCoctail = await this.dataModel.post(req.body);
+            resp.json(newCoctail).end();
+        } catch (error) {
+            const httpError = new HTTPError(
+                503,
+                'Service unavailable',
+                (error as Error).message
+            );
+            next(httpError);
+            return;
+        }
+    }
+
+    async patch(req: Request, resp: Response, next: NextFunction) {
+        try {
+            const updateCoctail = await this.dataModel.patch(
+                +req.params.id,
+                req.body
+            );
+            resp.json(updateCoctail).end();
+        } catch (error) {
+            if ((error as Error).message === 'Not found id') {
+                const httpError = new HTTPError(
+                    404,
+                    'Not Found',
+                    (error as Error).message
+                );
+                next(httpError);
+                return;
+            }
+            const httpError = new HTTPError(
+                503,
+                'Service unavailable',
+                (error as Error).message
+            );
+            next(httpError);
+            return;
+        }
+    }
+
+    async delete(req: Request, resp: Response, next: NextFunction) {
+        try {
+            await this.dataModel.delete(+req.params.id);
+            resp.json({}).end();
+        } catch (error) {
+            if ((error as Error).message === 'Not found id') {
+                const httpError = new HTTPError(
+                    404,
+                    'Not Found',
+                    (error as Error).message
+                );
+                next(httpError);
+                return;
+            }
+            const httpError = new HTTPError(
+                503,
+                'Service unavailable',
+                (error as Error).message
+            );
+            next(httpError);
+            return;
+        }
     }
 }

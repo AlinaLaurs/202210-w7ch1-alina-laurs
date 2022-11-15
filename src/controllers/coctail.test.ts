@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { CoctailFileData } from '../data/coctails.file.data.js';
-import { CoctailController } from './coctails.js';
+import { CoctailFileData } from '../data/coctails.file.data';
+import { CoctailController } from './coctails';
 
 describe('Given CoctailController', () => {
     const model = new CoctailFileData();

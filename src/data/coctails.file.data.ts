@@ -52,8 +52,7 @@ export class CoctailFileData implements Data<Coctail> {
         const aData = await this.getAll();
         const index = aData.findIndex((item) => item.id === id);
         if (!index) throw new Error('Not found id');
-        aData.filter((item) => item.id !== id);
-        await this.#saveData(aData);
+        await this.#saveData(aData.filter((item) => item.id !== id));
     }
 
     #createID() {

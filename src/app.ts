@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (_req, res) => {
-    res.send('API Express de tapas').end();
+    res.send('API de tapas').end();
 });
 
 app.use('/tapas', tapaRouter);

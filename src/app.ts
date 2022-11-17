@@ -11,10 +11,11 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (_req, res) => {
-    res.send('API Express de coctails').end();
+    res.send('API Express de cócteles y tapas').end();
 });
 
 app.use('/coctails', coctailRouter);
+app.use('/tapas', tapaRouter);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use(

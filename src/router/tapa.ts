@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { TapaController } from '../controllers/tapas.js';
-import { TapaFileData } from '../data/tapas.reposity.js';
+import { TapaFileData } from '../data/tapas.repository.js';
 
 export const tapaRouter = Router();
 

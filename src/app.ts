@@ -3,6 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import { coctailRouter } from './router/coctail.js';
 import { CustomError } from './interfaces/error.js';
+import { tapaRouter } from './router/tapa.js';
 
 export const app = express();
 

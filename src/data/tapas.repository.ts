@@ -31,19 +31,19 @@ export class TapaRepository implements Data<Tapa> {
     async get(id: id): Promise<Tapa> {
         const result = await this.#Model.findById(id);
         if (!result) throw new Error('Not found id');
-        return result as Tapa;
+        return result as unknown as Tapa;
     }
 
     async post(data: ProtoTapa): Promise<Tapa> {
         const result = await this.#Model.create(data);
-        return result as Tapa;
+        return result as unknown as Tapa;
     }
     async patch(id: id, data: Partial<Tapa>): Promise<Tapa> {
         const result = await this.#Model.findByIdAndUpdate(id, data, {
             new: true,
         });
         if (!result) throw new Error('Not found id');
-        return result as Tapa;
+        return result as unknown as Tapa;
     }
 
     async delete(id: id): Promise<void> {

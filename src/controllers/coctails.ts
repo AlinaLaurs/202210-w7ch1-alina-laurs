@@ -7,7 +7,6 @@ export class CoctailController {
     async getAll(req: Request, resp: Response, next: NextFunction) {
         try {
             const data = await this.dataModel.getAll();
-            resp.json(data).end();
         } catch (error) {
             const httpError = new HTTPError(
                 503,

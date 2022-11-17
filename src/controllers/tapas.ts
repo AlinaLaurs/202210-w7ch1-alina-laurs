@@ -23,7 +23,7 @@ export class TapaController {
 
     async get(req: Request, resp: Response, next: NextFunction) {
         try {
-            const tapa = await this.repository.get(req.params.id);
+            const tapa = await this.repository.get(+req.params.id);
             resp.json({ tapa });
         } catch (error) {
             next(this.#createHttpError(error as Error));
@@ -46,7 +46,7 @@ export class TapaController {
 
     async patch(req: Request, resp: Response, next: NextFunction) {
         try {
-            const tapa = await this.repository.patch(req.params.id, req.body);
+            const tapa = await this.repository.patch(+req.params.id, req.body);
             resp.json({ tapa });
         } catch (error) {
             next(this.#createHttpError(error as Error));
@@ -55,7 +55,7 @@ export class TapaController {
 
     async delete(req: Request, resp: Response, next: NextFunction) {
         try {
-            await this.repository.delete(req.params.id);
+            await this.repository.delete(+req.params.id);
             resp.json({});
         } catch (error) {
             next(this.#createHttpError(error as Error));

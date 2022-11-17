@@ -1,5 +1,4 @@
-/*
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { CoctailFileData } from '../data/coctails.file.data';
 import { CoctailController } from './coctails';
 
@@ -11,10 +10,14 @@ describe('Given CoctailController', () => {
         json: jest.fn(),
         end: jest.fn(),
     };
-    test('Then ... getAll', () => {
-        coctailController.getAll(req as Request, resp as unknown as Response);
+
+    const next = jest.fn();
+    test('Then ... getAll', async () => {
+        await coctailController.getAll(
+            req as Request,
+            resp as unknown as Response,
+            next as NextFunction
+        );
         expect(resp.json).toHaveBeenCalled();
-        expect(resp.end).toHaveBeenCalled();
     });
 });
-*/

@@ -6,7 +6,7 @@ export type ProtoTapa = {
 };
 
 export type Tapa = {
-    id: number;
+    id: string;
     name: string;
     origin: string;
     ingredient: string;

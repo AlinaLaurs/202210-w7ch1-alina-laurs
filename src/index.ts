@@ -3,6 +3,7 @@ import { app } from './app.js';
 import * as dotenv from 'dotenv';
 dotenv.config();
 import { CustomError } from './interfaces/error.js';
+import { dbConnect } from './db.conect.js';
 
 const port = process.env.PORT || 3300;
 const server = http.createServer(app);
@@ -28,4 +29,6 @@ server.on('error', (error: CustomError, response: http.ServerResponse) => {
     response.end();
 });
 
-server.listen(port);
+dbConnect()
+    .then(() => server.listen(port))
+    .catch((error) => server.emit(error));

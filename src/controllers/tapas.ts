@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { Data } from '../data/data.js';
-import { Tapa } from '../interfaces/tapa.js';
+import { Tapa } from '../entities/tapa.js';
 import { HTTPError } from '../interfaces/error.js';
 
 export class TapaController {

@@ -1,5 +1,5 @@
 import mongoose, { Schema, model } from 'mongoose';
-import { Tapa, ProtoTapa } from '../interfaces/tapa.js';
+import { Tapa, ProtoTapa } from '../entities/tapa.js';
 import { Data, id } from './data.js';
 
 export class TapaRepository implements Data<Tapa> {

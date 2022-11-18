@@ -50,15 +50,14 @@ jobs:
         run: npm ci
       - name: Testing coverage
         run: npm run test:prod #Change for a valid npm script
-        env:
-          USER: ${{ secrets.USER }}
-          PW: ${{ secrets.PW }}
-          CLUSTER: ${{ secrets.CLUSTER }}
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
+          USER1: ${{ secrets.USER1 }}
+          PASSW: ${{ secrets.PASSW }}
+          CLUSTER: ${{ secrets.CLUSTER }}
         with:
           # Additional arguments for the sonarcloud scanner
           args:

@@ -23,18 +23,22 @@ describe('Given TapaController', () => {
         await tapaController.getAll(req as Request, resp as Response, next);
         expect(resp.json).toHaveBeenCalledWith({ tapas: ['mock'] });
     });
+
     test('Then get should have been called', async () => {
         await tapaController.get(req as Request, resp as Response, next);
         expect(resp.json).toHaveBeenCalledWith({ tapas: ['mock'] });
     });
+
     test('Then post should have been called', async () => {
         await tapaController.post(req as Request, resp as Response, next);
         expect(resp.json).toHaveBeenCalledWith({ tapas: ['mock'] });
     });
+
     test('Then patch should have been called', async () => {
         await tapaController.patch(req as Request, resp as Response, next);
         expect(resp.json).toHaveBeenCalledWith({ tapas: ['mock'] });
     });
+
     test('Then delete should have been called', async () => {
         await tapaController.delete(req as Request, resp as Response, next);
         expect(resp.json).toHaveBeenCalledWith({ tapas: ['mock'] });

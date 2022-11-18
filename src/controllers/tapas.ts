@@ -4,9 +4,7 @@ import { Tapa } from '../entities/tapa.js';
 import { HTTPError } from '../interfaces/error.js';
 
 export class TapaController {
-    constructor(public repository: Data<Tapa>) {
-        //
-    }
+    constructor(public repository: Data<Tapa>) {}
     async getAll(req: Request, resp: Response, next: NextFunction) {
         try {
             const tapas = await this.repository.getAll();
